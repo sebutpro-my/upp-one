@@ -27,4 +27,6 @@ flutter:
     - assets/logos/logo_primary.png
     - assets/logos/logo_white.PNG
     - assets/logos/logo_horizontal.png
+    - assets/logos/logo_horizontal_white.png
     - assets/logos/logo_monogram.png
+    - assets/logos/logo_monogram_white.png
