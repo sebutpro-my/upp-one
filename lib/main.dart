@@ -14,8 +14,14 @@ class AppAssets {
   static const String logoHorizontal =
       'assets/logos/logo_horizontal.png';
 
+  static const String logoHorizontalWhite =
+      'assets/logos/logo_horizontal_white.png';
+
   static const String logoMonogram =
       'assets/logos/logo_monogram.png';
+
+  static const String logoMonogramWhite =
+      'assets/logos/logo_monogram_white.png';
 }
 
 class AppColors {
@@ -201,7 +207,9 @@ class LogoPreviewPage extends StatelessWidget {
 
                   _buildLogoCard(
                     title: 'Logo Horizontal',
-                    asset: AppAssets.logoHorizontal,
+                    asset: isDarkMode
+                        ? AppAssets.logoHorizontalWhite
+                        : AppAssets.logoHorizontal,
                     height: 100,
                     surfaceColor: surfaceColor,
                     textColor: textColor,
@@ -211,7 +219,9 @@ class LogoPreviewPage extends StatelessWidget {
 
                   _buildLogoCard(
                     title: 'Logo Monogram',
-                    asset: AppAssets.logoMonogram,
+                    asset: isDarkMode
+                        ? AppAssets.logoMonogramWhite
+                        : AppAssets.logoMonogram,
                     height: 120,
                     surfaceColor: surfaceColor,
                     textColor: textColor,
