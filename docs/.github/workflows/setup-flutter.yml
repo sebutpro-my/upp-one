@@ -1,0 +1,83 @@
+name: Setup Flutter Project
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Generate Flutter project
+        run: |
+          if [ -f pubspec.yaml ]; then
+            echo "Flutter project already exists."
+            exit 1
+          fi
+
+          flutter create \
+            --project-name upp_one \
+            --org my.uppone \
+            --platforms=web \
+            .
+
+      - name: Create modular folders
+        run: |
+          mkdir -p lib/core
+          mkdir -p lib/models
+          mkdir -p lib/services
+          mkdir -p lib/widgets
+          mkdir -p lib/screens
+          mkdir -p lib/modules
+
+          mkdir -p assets/images
+          mkdir -p assets/logos
+          mkdir -p assets/icons
+          mkdir -p assets/fonts
+
+          mkdir -p supabase/migrations
+          mkdir -p supabase/functions
+
+          touch lib/core/.gitkeep
+          touch lib/models/.gitkeep
+          touch lib/services/.gitkeep
+          touch lib/widgets/.gitkeep
+          touch lib/screens/.gitkeep
+          touch lib/modules/.gitkeep
+
+          touch assets/images/.gitkeep
+          touch assets/logos/.gitkeep
+          touch assets/icons/.gitkeep
+          touch assets/fonts/.gitkeep
+
+          touch supabase/migrations/.gitkeep
+          touch supabase/functions/.gitkeep
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyse Flutter project
+        run: flutter analyze
+
+      - name: Run Flutter tests
+        run: flutter test
+
+      - name: Commit generated project
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .
+          git commit -m "Initialize UPP ONE Flutter project"
+          git push
