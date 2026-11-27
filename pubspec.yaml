@@ -22,3 +22,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/logos/logo_primary.png
+    - assets/logos/logo_white.png
+    - assets/logos/logo_horizontal.png
+    - assets/logos/logo_monogram.png
