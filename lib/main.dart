@@ -1,5 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 
+import 'core/theme/app_colors.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,14 +24,6 @@ class AppAssets {
 
   static const String logoMonogramWhite =
       'assets/logos/logo_monogram_white.png';
-}
-
-class AppColors {
-  static const Color navy = Color(0xFF102B46);
-  static const Color gold = Color(0xFFD4B577);
-  static const Color lightBackground = Color(0xFFF5F7FA);
-  static const Color darkBackground = Color(0xFF101C2C);
-  static const Color darkSurface = Color(0xFF1C2D41);
 }
 
 class MyApp extends StatefulWidget {
@@ -94,12 +88,10 @@ class LogoPreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color textColor =
-        isDarkMode ? Colors.white : AppColors.navy;
+    AppColors.primaryText(isDarkMode);
 
     final Color surfaceColor =
-        isDarkMode
-            ? AppColors.darkSurface
-            : Colors.white;
+    AppColors.surface(isDarkMode);
 
     return Scaffold(
       appBar: AppBar(
